@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #messages { margin-bottom: 20px; }
+        #messages div { padding: 5px; border-bottom: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Chat Room</h1>
+    <div id="messages"></div>
+    <form id="message-form">
+        <input type="text" id="message-input" placeholder="Type a message..." required>
+        <button type="submit">Send</button>
+    </form>
+
+    <script>
+        const form = document.getElementById('message-form');
+        const input = document.getElementById('message-input');
+        const messagesDiv = document.getElementById('messages');
+
+        //Render messages in memory when page loaded
+        function loadMessages() {
+            fetch('/messages')
+                .then(response => response.json())
+                .then(data => {
+                    messagesDiv.innerHTML = '';
+                    data.forEach(msg => {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.textContent = msg;
+                        messagesDiv.appendChild(messageDiv);
+                    });
+                });
+        }
+
+        //Send messages to app2 on user input
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const message = input.value;
+
+            fetch('/send_message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: message })
+            }).then(() => {
+                input.value = '';
+                loadMessages(); //Reload messages after sending
+            }).catch(err => console.error('Error sending message:', err));
+        });
+
+        loadMessages();
+    </script>
+</body>
+</html>
