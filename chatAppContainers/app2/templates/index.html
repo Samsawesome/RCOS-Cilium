@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-    <h1>Chat Room 1</h1>
+    <h1>Chat Room 2</h1>
     <div id="messages"></div>
     <form id="message-form">
         <input type="text" id="message-input" placeholder="Type a message..." required>
@@ -37,7 +37,7 @@
                 });
         }
 
-        //Send messages to app2 on user input
+        //Send messages to app1 on user input
         form.addEventListener('submit', function(event) {
             event.preventDefault();
             const message = input.value;
@@ -47,7 +47,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ message: message, sender_id: 'app1' })
+                body: JSON.stringify({ message: message, sender_id: 'app2'  })
             }).then(() => {
                 input.value = '';
                 loadMessages(); //Reload messages after sending
