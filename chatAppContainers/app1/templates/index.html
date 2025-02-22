@@ -8,10 +8,13 @@
         body { font-family: Arial, sans-serif; }
         #messages { margin-bottom: 20px; }
         #messages div { padding: 5px; border-bottom: 1px solid #ddd; }
+        #local-messages { margin-bottom: 20px; }
+        #local-messages div { padding: 5px; border-bottom: 1px solid #ddd; }
     </style>
 </head>
 <body>
     <h1>Chat Room 1</h1>
+    <div id="local-messages"></div>
     <div id="messages"></div>
     <form id="message-form">
         <input type="text" id="message-input" placeholder="Type a message..." required>
@@ -22,16 +25,29 @@
         const form = document.getElementById('message-form');
         const input = document.getElementById('message-input');
         const messagesDiv = document.getElementById('messages');
+        const localMessagesDiv = document.getElementById('local-messages');
 
         //Render messages in memory when page loaded
         function loadMessages() {
             fetch('/local_messages')
                 .then(response => response.json())
                 .then(data => {
+                    localMessagesDiv.innerHTML = '';
+                    data.forEach(msg => {
+                        const localMessageDiv = document.createElement('div');
+                        localMessageDiv.textContent = msg;
+                        localMessageDiv.style.backgroundColor = 'lightblue';
+                        localMessagesDiv.appendChild(localMessageDiv);
+                    });
+                });
+            fetch('/messages')
+                .then(response => response.json())
+                .then(data => {
                     messagesDiv.innerHTML = '';
                     data.forEach(msg => {
                         const messageDiv = document.createElement('div');
                         messageDiv.textContent = msg;
+                        messageDiv.style.backgroundColor = 'lightgreen';
                         messagesDiv.appendChild(messageDiv);
                     });
                 });

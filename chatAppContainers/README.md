@@ -3,9 +3,10 @@ By running 'docker compose up --build' in the chatAppContainers directory, the c
 Then, by connecting to http://localhost:5000, the user is taken to a chat room.
 Going to http://localhost:5001, the user can see a complimentary chat room.
 Sending messages in chat room 1 (5000), will make them appear in http://localhost:5000/local_messages,
-as well as http://localhost:5001/messages. Due to time constraints I have not fixed the HTML yet, 
-so only local messages display. Sending messages from chat room 2 (5001) makes them appear
-in the opposite directories.
+as well as http://localhost:5001/messages. Sending messages from chat room 2 (5001) makes them appear
+in the opposite directories. Local messages show up with a light blue background, and recieved
+messages show up with a light green background. They are not displayed in order recieved, since I
+only wanted to show messages being passed inbetween, and that has been shown.
 
 There are two containers set up for this connected through a network, app1 and app2.  
 The html files has an internal JavaScript script to load local messages on page refresh, so info is not lost on page refresh. 
