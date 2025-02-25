@@ -13,21 +13,19 @@
     </style>
 </head>
 <body>
-    <h1>Chat Room 1</h1>
+    <h1>MODERATOR</h1>
     <div id="local-messages"></div>
     <div id="messages"></div>
     <form id="message-form">
         <input type="text" id="message-input" placeholder="Type a message..." required>
         <button type="submit">Send</button>
     </form>
-    <div id="admin-messages"></div>
 
-    <script>
+   <!--<script>
         const form = document.getElementById('message-form');
         const input = document.getElementById('message-input');
         const messagesDiv = document.getElementById('messages');
         const localMessagesDiv = document.getElementById('local-messages');
-        const adminMessagesDiv = document.getElementById('admin-messages');
 
         //Render messages in memory when page loaded
         function loadMessages() {
@@ -53,20 +51,9 @@
                         messagesDiv.appendChild(messageDiv);
                     });
                 });
-            fetch('/admin_messages')
-                .then(response => response.json())
-                .then(data => {
-                  adminMessagesDiv.innerHTML = '';
-                    data.forEach(msg => {
-                        const messageDiv = document.createElement('div');
-                        adminMessageDiv.textContent = msg;
-                        adminMessageDiv.style.backgroundColor = 'lightred';
-                        adminMessagesDiv.appendChild(adminMessageDiv);
-                    });
-                });
         }
 
-        //Send messages to app2 on user input
+        //Send messages to app1 on user input
         form.addEventListener('submit', function(event) {
             event.preventDefault();
             const message = input.value;
@@ -76,7 +63,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ message: message, sender_id: 'app1' })
+                body: JSON.stringify({ message: message, sender_id: 'app2'  })
             }).then(() => {
                 input.value = '';
                 loadMessages(); //Reload messages after sending
@@ -84,6 +71,6 @@
         });
 
         loadMessages();
-    </script>
+    </script>-->
 </body>
 </html>

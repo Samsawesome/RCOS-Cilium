@@ -8,8 +8,10 @@ in the opposite directories. Local messages show up with a light blue background
 messages show up with a light green background. They are not displayed in order recieved, since I
 only wanted to show messages being passed inbetween, and that has been shown.
 
-There are two containers set up for this connected through a network, app1 and app2.  
+There are three containers set up for this connected through a network, app1, app2 and app3.  
 The html files has an internal JavaScript script to load local messages on page refresh, so info is not lost on page refresh. 
 The app.py files communicate between apps, along with rendering the html file and some basic error checking. 
 Both containers have a Dockerfile which communicates with the top level compose.yaml file, and requirements.txt file to define what python libraries are necesary.
 The compose.yaml file builds both containers, but importantly, connects them through a self defined network called chat-network, which uses a default driver.
+App3 acts as a moderator, so both app1 and app2 send their messages to app3, where it checkes the message to see if it is dangerous.
+If it is deemed dangerous (contains the word hacking) the message is not sent through.
