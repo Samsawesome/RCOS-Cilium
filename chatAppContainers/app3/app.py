@@ -31,7 +31,7 @@ def send_message():
     if message:
         messages.append(message)
         sender.append(sender_id)
-        if "hacking" in message:
+        if "hacking" in message or "virus" in message or "hacker" in message:
             #if "dangerous" message sent
             if sender_id == 'app1': #tell sender they sent an invalid message, also dont send to other user
                 requests.post("http://app1:5000/admin_message", json={"message": "ERROR DANGEROUS MESSAGE SENT"})
