@@ -139,7 +139,7 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ message: message, sender_id: 'app2'  })
+                body: JSON.stringify({ timestamp: new Date(), message: message, sender_id: 'app2'  })
             }).then(() => {
                 input.value = '';
                 loadMessages(); //Reload messages after sending
