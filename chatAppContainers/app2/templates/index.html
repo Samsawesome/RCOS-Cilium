@@ -104,6 +104,9 @@
                         localMessageDiv.style.backgroundColor = 'lightblue';
                         localMessageDiv.style.borderRadius = '10px';
                         localMessageDiv.style.borderBottomRightRadius = '0px'; // Text bubble effect
+                        messageDiv.style.textAlign = 'left';
+                        messageDiv.style.marginRight = 'auto';
+                        messageDiv.style.maxWidth = '70%';
                         localMessagesDiv.appendChild(localMessageDiv);
                     });
                 });
@@ -117,6 +120,9 @@
                         messageDiv.style.backgroundColor = 'lightgreen';
                         messageDiv.style.borderRadius = '10px';
                         messageDiv.style.borderBottomLeftRadius = '0px'; // Text bubble effect
+                        adminMessageDiv.style.textAlign = 'center'; // or 'left' if you prefer
+                        adminMessageDiv.style.margin = '10px auto'; // center horizontally
+                        adminMessageDiv.style.maxWidth = '80%';
                         messagesDiv.appendChild(messageDiv);
                     });
                 });
@@ -129,6 +135,9 @@
                         adminMessageDiv.textContent = msg;
                         adminMessageDiv.style.backgroundColor = 'lightred';
                         messageDiv.style.borderRadius = '10px';
+                        adminMessageDiv.style.textAlign = 'center'; // or 'left' if you prefer
+                        adminMessageDiv.style.margin = '10px auto'; // center horizontally
+                        adminMessageDiv.style.maxWidth = '80%';
                         adminMessagesDiv.appendChild(adminMessageDiv);
                     });
                 });
