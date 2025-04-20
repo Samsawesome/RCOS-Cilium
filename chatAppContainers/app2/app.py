@@ -34,16 +34,16 @@ def send_message():
             local_messages.append(message)  # Add the message to local container
             # Send the message to the other container (App2) with a sender ID of 'app1'
             requests.post("http://app3:5002/send_message", json={"message": message, "sender_id": "app2"})
-            return jsonify({"status": "Message sent successfully"}), 200
+            return (jsonify({"status": "Message sent successfully"}), 200)
         elif sender_id == 'app1':
             # If the sender is 'app2', prevent adding the message again in app1
             #if message not in local_messages:  # Check if the message is already in local messages
             messages.append(message)  # Add the message to local container
-            return jsonify({"status": "Message received from App2"}), 200
+            return (jsonify({"status": "Message received from App2"}), 200)
         else:
-            return jsonify({"status": "Invalid sender"}), 400
+            return (jsonify({"status": "Invalid sender"}), 400)
     else:
-        return jsonify({"status": "Message missing"}), 400
+        return (jsonify({"status": "Message missing"}), 400)
 
 
 @app.route('/admin_message', methods=['GET'])
